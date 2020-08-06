@@ -13,6 +13,13 @@ jobs:
  
     steps: 
     - uses: actions/checkout@v2 
-  
+    - uses: actions/cache@v2
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
     - name: Android Build
       uses: vgaidarji/android-github-actions-build@v1.0.1
